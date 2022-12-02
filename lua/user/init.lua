@@ -208,14 +208,14 @@ local config = {
       -- quick save
       -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
       
---      -- DAP keys
---      ["F5"] = { "lua require('dap').continue()<cr>", desc = "Continue" },
---      ["F9"] = { "lua require('dap-go').debug_test()<cr>", desc = "Debug Test" },
---      ["F10"] = { "lua require('dap').step_over()<cr>", desc = "Step Over" },
---      ["F11"] = { "lua require('dap').step_into()<cr>", desc = "Step Into" },
---      ["F12"] = { "lua require('dap').step_out()<cr>", desc = "Step Out" },
---      ["<leader>b"] = { "lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
---      ["<leader>td"] = { "lua require('dap-go').debug_test()<cr>", desc = "Debug Test" },
+      -- DAP keys
+      ["<F5>"] = { ":GoDebugContinue<cr>", desc = "Debug Continue" },
+      ["<F6>"] = { ":GoDebugBreakpoint<cr>", desc = "Debug Breakpoint" },
+      ["<F7>"] = { ":GoDebugTest<cr>", desc = "Debug Test" },
+      ["<F9>"] = { ":lcd %:p:h | GoDebugTestFunc<cr>", desc = "Debug Test Function" },
+      ["<F10>"] = { ":GoDebugNext<cr>", desc = "Debug Step Over" },
+      ["<F11>"] = { ":GoDebugStep", desc = "Debug Step Into" },
+      ["<F12>"] = { ":GoDebugStepOut<cr>", desc = "Debug Step Out" },
   },
     t = {
       -- setting a mapping to false will disable it
@@ -227,52 +227,7 @@ local config = {
   plugins = {
     init = {
         {"fatih/vim-go"},
---      -- DAP:
---      {
---          "mfussenegger/nvim-dap",
---          opt = true,
---          event = "BufReadPre",
---          module = { "dap" },
---          wants = { "nvim-dap-virtual-text", "nvim-dap-ui" },
---          requires = {
---              "theHamsta/nvim-dap-virtual-text",
---              "rcarriga/nvim-dap-ui",
---              "nvim-telescope/telescope-dap.nvim",
---              {"leoluz/nvim-dap-go", module ="dap-go" },
---
---          },
---          config = function()
---              require("dapui").setup()
---              require("nvim-dap-virtual-text").setup()
---                
---              -- Configure DAP UI
---              local dap, dapui = require("dap"), require("dapui")
---              dap.listeners.after.event_initialized["dapui_config"] = function()
---                  dapui.open()
---              end
---              dap.listeners.before.event_terminated["dapui_config"] = function()
---                  dapui.close()
---              end
---              dap.listeners.before.event_exited["dapui_config"] = function()
---                  dapui.close()
---              end 
---
---              require("dap-go").setup()
---          end
---      },
- --   {
- --       "rcarriga/nvim-dap-ui",
- --       requires = { "mfussenegger/nvim-dap"},
- --       config = function()
- --         local dapui = require "dapui"
---
-  --        local dap = require "dap"
-  --        dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
-  --        dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
-  --        dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
-  --      end,
-  --    },
-     -- You can disable default plugins as follows:
+    -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
 
       -- You can also add new plugins here as well:
